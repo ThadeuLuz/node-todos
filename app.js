@@ -16,8 +16,12 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Bem Vindo' });
+  res.render('index');
 })
+
+app.get('/signup', (req, res) => {
+  res.render('signup');
+});
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
