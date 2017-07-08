@@ -1,0 +1,29 @@
+extends partials/layout
+
+block content
+
+  form.mdl-card.mdl-shadow--2dp.main-card(method='post')
+    .mdl-card__title.mdl-card--border
+      h2.mdl-card__title-text Signup
+    .mdl-card__supporting-text
+      
+      .mdl-textfield.mdl-js-textfield(style="width: 100%")
+        input#email.mdl-textfield__input(type='email', name='email')
+        label.mdl-textfield__label(for='email') Email
+        span.mdl-textfield__error Invalid email
+
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label(style="width: 100%")
+        input#name.mdl-textfield__input(type='text', name='name', pattern='.{2,}')
+        label.mdl-textfield__label(for='name') Name
+        span.mdl-textfield__error At least 2 chars
+
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label(style="width: 100%")
+        input#password.mdl-textfield__input(type='password', name='password', pattern='.{6,}')
+        label.mdl-textfield__label(for='password') Password
+        span.mdl-textfield__error At least 6 chars
+
+      include partials/messages
+
+    .mdl-card__actions.mdl-card--border(style='text-align: right;')
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent
+        | Signup

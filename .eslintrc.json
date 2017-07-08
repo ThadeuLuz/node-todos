@@ -1,0 +1,25 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "consistent-return": 0,
+    "no-console": 0,
+    "no-param-reassign": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/forbid-prop-types": 0
+  },
+  "globals": {
+    "React": true,
+    "ReactDOM": true,
+    "componentHandler": true
+  }
+}
