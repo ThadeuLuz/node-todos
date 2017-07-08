@@ -1,10 +1,14 @@
 const path = require('path');
 const express = require('express');
+const favicon = require('serve-favicon');
 
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Bem Vindo' });
