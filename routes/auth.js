@@ -65,6 +65,31 @@ router.post('/login', (req, res, next) => {
 });
 
 
+router.post('/profile', (req, res, next) => {
+  const { id } = req.session.user || {};
+  const { name } = req.body;
+
+  if (!id) return res.redirect('/logout');
+  if (!name) {
+    req.flash('messages', 'All fields are required');
+    return res.redirect('/profile');
+  }
+
+  User.findById(id, (err, user) => {
+    if (err) return next(err);
+    if (!user) return next(new Error(`User not found with id ${id}`));
+
+    user.name = name;
+
+    user.save((saveErr, savedUser) => {
+      if (saveErr) return next(saveErr);
+      saveSession(req, savedUser);
+      res.redirect('/profile');
+    });
+  });
+});
+
+
 router.get('/logout', (req, res) => {
   req.session.user = null;
   res.redirect('/');
