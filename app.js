@@ -17,7 +17,11 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  res.send(err.message);
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: err,
+  });
 });
 
 app.listen(8080, () => {
