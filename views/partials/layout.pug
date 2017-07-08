@@ -12,6 +12,10 @@ html
     link(rel='stylesheet', href='css/style.css')
 
   body
-    block content
+    .mdl-layout.mdl-js-layout.mdl-layout--fixed-header
+      include topbar
+      main.mdl-layout__content
+        .page-content
+          block content
 
     script(defer, src='https://code.getmdl.io/1.3.0/material.min.js')
