@@ -1,20 +1,32 @@
 const express = require('express');
 
+const redirectIfAuth = (req, res, next) => {
+  if (req.session.user) return res.redirect('/');
+  next();
+};
+
+
+const redirectIfUnauth = (req, res, next) => {
+  if (!req.session.user) return res.redirect('/login');
+  next();
+};
+
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
   res.render('index');
-})
-
-router.get('/signup', (req, res) => {
-  res.render('signup');
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', redirectIfAuth, (req, res) => {
   res.render('login');
 });
 
-router.get('/profile', (req, res) => {
+router.get('/signup', redirectIfAuth, (req, res) => {
+  res.render('signup');
+});
+
+router.get('/profile', redirectIfUnauth, (req, res) => {
   res.render('profile');
 });
 
