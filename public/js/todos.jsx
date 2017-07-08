@@ -62,7 +62,10 @@ class App extends React.Component {
 
     // Load items
     fetch('/api/todo', { credentials: 'include' })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) return response.json();
+        return { items: [{ text: 'Fake task', done: true }] }
+      })
       .then((data) => {
         console.log('data', data);
         this.setState({ items: data.items || [], dirty: true });
