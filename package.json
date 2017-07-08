@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/ThadeuLuz/node-todos#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "pug": "^2.0.0-rc.2"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
