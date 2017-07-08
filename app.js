@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser');
 
 const auth = require('./routes/auth');
 const pages = require('./routes/pages');
+const todo = require('./routes/todo');
 const errors = require('./routes/errors');
 
 dotenv.load();
@@ -51,6 +52,7 @@ app.use((req, res, next) => {
 
 app.use(auth);
 app.use(pages);
+app.use('/api', todo);
 app.use(errors);
 
 app.listen(8080, () => {
