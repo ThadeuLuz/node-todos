@@ -1,7 +1,7 @@
 const express = require('express');
 
 const redirectIfAuth = (req, res, next) => {
-  if (req.session.user) return res.redirect('/');
+  if (req.session.user) return res.redirect('/todos');
   next();
 };
 
@@ -28,6 +28,10 @@ router.get('/signup', redirectIfAuth, (req, res) => {
 
 router.get('/profile', redirectIfUnauth, (req, res) => {
   res.render('profile');
+});
+
+router.get('/todos', redirectIfUnauth, (req, res) => {
+  res.render('todos');
 });
 
 module.exports = router;
