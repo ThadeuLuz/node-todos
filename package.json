@@ -4,6 +4,8 @@
   "description": "A simple Node.js and Express todo app",
   "main": "app.js",
   "scripts": {
+    "start": "node app",
+    "dev": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +25,8 @@
   "homepage": "https://github.com/ThadeuLuz/node-todos#readme",
   "dependencies": {
     "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
