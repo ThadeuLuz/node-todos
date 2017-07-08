@@ -43,6 +43,12 @@ app.use(session({
 }));
 app.use(flash());
 
+app.use((req, res, next) => {
+  res.locals.user = req.session.user;
+  res.locals.messages = req.flash('messages');
+  next();
+});
+
 app.use(auth);
 app.use(pages);
 app.use(errors);
