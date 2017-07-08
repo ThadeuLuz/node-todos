@@ -5,7 +5,9 @@ const dotenv = require('dotenv');
 const session = require('express-session');
 const express = require('express');
 const favicon = require('serve-favicon');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const MongoStore = require('connect-mongo')(session);
 const cookieParser = require('cookie-parser');
 
 const auth = require('./routes/auth');
@@ -13,6 +15,9 @@ const pages = require('./routes/pages');
 const errors = require('./routes/errors');
 
 dotenv.load();
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI, { useMongoClient: true })
+  .then(() => { console.info('MongoDB Connected'); });
 
 const app = express();
 
@@ -31,6 +36,10 @@ app.use(session({
   secret: 'shhhsecret',
   resave: true,
   saveUninitialized: true,
+  store: new MongoStore({
+    url: process.env.MONGODB_URI,
+    autoReconnect: true,
+  }),
 }));
 app.use(flash());
 
