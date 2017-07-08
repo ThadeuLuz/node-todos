@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/ThadeuLuz/node-todos/issues"
   },
-  "homepage": "https://github.com/ThadeuLuz/node-todos#readme"
+  "homepage": "https://github.com/ThadeuLuz/node-todos#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
 }
