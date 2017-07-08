@@ -1,0 +1,24 @@
+{
+  "name": "node-todos",
+  "version": "1.0.0",
+  "description": "A simple Node.js and Express todo app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThadeuLuz/node-todos.git"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "todos"
+  ],
+  "author": "Thadeu Luz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThadeuLuz/node-todos/issues"
+  },
+  "homepage": "https://github.com/ThadeuLuz/node-todos#readme"
+}
