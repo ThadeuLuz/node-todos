@@ -1,6 +1,8 @@
 const path = require('path');
+const flash = require('connect-flash');
 const logger = require('morgan');
 const dotenv = require('dotenv');
+const session = require('express-session');
 const express = require('express');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
@@ -20,18 +22,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'shhhsecret',
+  resave: true,
+  saveUninitialized: true,
+}));
+app.use(flash());
+
 app.get('/', (req, res) => {
   res.render('index');
 })
 
 app.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup', { messages: req.flash('messages') });
 });
 
 app.post('/signup', (req, res, next) => {
   const { email, name, password } = req.body;
 
-  console.log({ email, name, password });
+  if (!email || !name || !password) {
+    req.flash('messages', 'All fields are required');
+  }
 
   return res.redirect('/signup');
 });

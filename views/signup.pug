@@ -22,6 +22,10 @@ block content
         label.mdl-textfield__label(for='password') Password
         span.mdl-textfield__error At least 6 chars
 
+      for message in messages
+        .mdl-textfield.mdl-js-textfield.is-invalid
+          span.mdl-textfield__error= message
+
     .mdl-card__actions.mdl-card--border(style='text-align: right;')
       button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent
         | Signup
