@@ -37,6 +37,11 @@ app.get('/signup', (req, res) => {
   res.render('signup', { messages: req.flash('messages') });
 });
 
+app.get('/login', (req, res) => {
+  res.render('login', { messages: req.flash('messages') });
+});
+
+
 app.post('/signup', (req, res, next) => {
   const { email, name, password } = req.body;
 
@@ -45,6 +50,16 @@ app.post('/signup', (req, res, next) => {
   }
 
   return res.redirect('/signup');
+});
+
+app.post('/login', (req, res, next) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    req.flash('messages', 'All fields are required');
+  }
+
+  return res.redirect('/login');
 });
 
 app.use((req, res, next) => {
