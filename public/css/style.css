@@ -1,0 +1,39 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+.page-content {
+  width: 100%;
+  height: 100% !important;
+  overflow: auto;
+  padding: 16px;
+  text-align: center;
+}
+
+.main-card {
+  width: 100%;
+  max-width: 512px;
+  display: inline-block;
+  margin-bottom: 100px;
+}
+
+.fab-wrapper {
+  padding: 32px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
