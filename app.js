@@ -8,10 +8,15 @@ const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const auth = require('./routes/auth');
+const pages = require('./routes/pages');
+const errors = require('./routes/errors');
+
 dotenv.load();
 
 const app = express();
 
+app.set('port', process.env.PORT || 8080);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -29,52 +34,9 @@ app.use(session({
 }));
 app.use(flash());
 
-app.get('/', (req, res) => {
-  res.render('index');
-})
-
-app.get('/signup', (req, res) => {
-  res.render('signup', { messages: req.flash('messages') });
-});
-
-app.get('/login', (req, res) => {
-  res.render('login', { messages: req.flash('messages') });
-});
-
-
-app.post('/signup', (req, res, next) => {
-  const { email, name, password } = req.body;
-
-  if (!email || !name || !password) {
-    req.flash('messages', 'All fields are required');
-  }
-
-  return res.redirect('/signup');
-});
-
-app.post('/login', (req, res, next) => {
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    req.flash('messages', 'All fields are required');
-  }
-
-  return res.redirect('/login');
-});
-
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: err,
-  });
-});
+app.use(auth);
+app.use(pages);
+app.use(errors);
 
 app.listen(8080, () => {
   console.log(`Example app listening on port 8080!`);
